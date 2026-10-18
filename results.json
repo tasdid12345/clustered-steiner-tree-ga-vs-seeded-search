@@ -1,0 +1,34 @@
+{
+  "question": "Can a heuristic-seeded genetic algorithm with local search find lower-cost clustered Steiner trees than a standard random-key genetic algorithm on the same simulated clustered networks?",
+  "method": "Simulated clustered graphs (networkx, seeded); train/test split of graphs; GA population size and mutation rate tuned on training graphs only; test cost averaged over GA seeds 42-44.",
+  "dataset": {
+    "name": "Simulated clustered networks (networkx random generator, seeds 42-71)",
+    "source_url": "https://networkx.org",
+    "n_rows": 30,
+    "n_train": 20,
+    "n_test": 10,
+    "same_as_paper": false,
+    "baseline_is_papers_method": false
+  },
+  "metric_name": "mean total tree cost on test graphs",
+  "higher_is_better": false,
+  "baseline": "Standard random-key GA: edge-priority keys, Kruskal-style decoding with terminal pruning, tournament selection, one-point crossover, mutation.",
+  "improved": "Same encoding and generation budget, but the initial population is seeded with shortest-path, MST and KMB Steiner trees, and each child undergoes a key-space swap local search.",
+  "metrics": {
+    "baseline_score": 103.59999999999998,
+    "improved_score": 83.30000000000001,
+    "improvement": 20.29999999999997,
+    "baseline_score_std": 1.0677078252031342,
+    "improved_score_std": 0.4546060565661985,
+    "baseline_feasibility": 1.0,
+    "improved_feasibility": 1.0,
+    "baseline_time_per_instance_s": 0.3298387765333378,
+    "improved_time_per_instance_s": 1.1703377404333366,
+    "baseline_pop_size": 40,
+    "improved_pop_size": 40,
+    "baseline_mutation_rate": 0.1,
+    "improved_mutation_rate": 0.02,
+    "paired_win_rate_improved_le_baseline": 1.0
+  },
+  "notes": "Simulated data, not the paper's dataset. Only 10 test graphs; std is over the 3 GA seeds (ddof=0). Same generation count for both models, but local search adds extra decodes to the improved model (compute is not identical). Feasibility is checked on each returned tree. Tuning grid is small and uses a single seed on training graphs."
+}
