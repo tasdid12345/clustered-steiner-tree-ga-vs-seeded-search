@@ -18,6 +18,31 @@ python analysis.py
 
 Results: results are written to `results.json` (with charts in `figures/`).
 
+## Results (latest run)
+
+On 10 test graphs of simulated clustered networks, my heuristic-seeded GA reached mean tree cost 83.3 (std 0.45 over 3 GA seeds) versus 103.6 (std 1.07) for a standard random-key GA, winning on every paired graph but at higher runtime.
+
+| Metric | Value |
+|---|---|
+| baseline_score | 103.6 |
+| improved_score | 83.3 |
+| improvement | 20.3 |
+| baseline_score_std | 1.068 |
+| improved_score_std | 0.4546 |
+| baseline_feasibility | 1 |
+| improved_feasibility | 1 |
+| baseline_time_per_instance_s | 0.3298 |
+| improved_time_per_instance_s | 1.17 |
+| baseline_pop_size | 40 |
+| improved_pop_size | 40 |
+| baseline_mutation_rate | 0.1 |
+| improved_mutation_rate | 0.02 |
+| paired_win_rate_improved_le_baseline | 1 |
+
+Run on 2026-10-18. Full output: [results.json](results.json) · [run.log](run.log)
+
+Notes: Simulated data, not the paper's dataset. Only 10 test graphs; std is over the 3 GA seeds (ddof=0). Same generation count for both models, but local search adds extra decodes to the improved model (compute is not identical). Feasibility is checked on each returned tree. Tuning grid is small and uses a single seed on training graphs.
+
 ## Reference
 
 This project is motivated by the following paper:
